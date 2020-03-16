@@ -1,0 +1,22 @@
+<!DOCTTYPE html>
+<html>
+    include header.pug
+    
+    <body>
+
+        -var html_names=['E-Mail','Password'];
+        -var types=['email','password'];
+        -var names=['email','password'];
+        -var i=0;
+
+        div(class="container text-center")
+            h3= "Registration Form"
+            form(id="form_registration")
+                for r in html_names
+                    br
+                    label(for="data"+(i+1))= r
+                    input( type=types[i] placeholder=r id="data"+(i+1) name=names[i++])     
+                    br
+                button(class="btn" id="sub" style="background-color:red;color: white;margin-bottom:1vh" type="submit")= "Submit"
+
+        <script src="../hack.js"></script>
