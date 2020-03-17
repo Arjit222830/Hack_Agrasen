@@ -6,7 +6,10 @@ const config= require('config');
 const bcrypt= require('bcrypt');
 const jwt = require('jsonwebtoken');
 const _=  require('lodash');
+const login=  require('./routes/login');
 const {Register, validateRegister}= require('./models/register');
+const {Jwt}= require('./models/jwt');
+const dashboard=  require('./routes/dashboard');
 
 mongoose.connect(config.get('db'),{useNewUrlParser: true,useUnifiedTopology: true})
     .then(()=> console.log(`Connected to ${config.get('db')}...`))
@@ -19,6 +22,8 @@ app.use(express.json());
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: false}));
+app.use('/login',login);
+app.use('/dashboard',dashboard);
 
 require('./prod.js')(app);
 
@@ -37,14 +42,10 @@ app.post('/',async (req,res)=>{
     if(user)
         return res.status(400).send('User already registered..');
 
-    const json= _.pick(req.body,['name', 'email', 'password']);
+    const json= _.pick(req.body,['email', 'password']);
 
     const salt= await bcrypt.genSalt(10);
     json.password = await bcrypt.hash(json.password,salt);
-
-    var token = jwt.sign(json, config.get('jwtPrivateKey'));
-
-    console.log("token:"+token)
     
     const register= new Register({
         Email: json.email,
@@ -53,7 +54,7 @@ app.post('/',async (req,res)=>{
 
     await register.save();
 
-    res.header('x-auth-token',token).send({token:token,message:'Registration Successful...',link:'/'});
+    res.status(200).send({message:'Registration Successful...',link:'/login'});
 });
 
 const port=process.env.PORT || 3000;
