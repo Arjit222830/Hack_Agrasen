@@ -1,3 +1,4 @@
 {
+    "jwtPrivateKey": "Arjit",
     "db": "mongodb://localhost/hack"
 }
