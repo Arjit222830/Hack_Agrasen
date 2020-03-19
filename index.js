@@ -4,12 +4,11 @@ var app = express();
 var bodyParser = require("body-parser");
 const config= require('config');
 const bcrypt= require('bcrypt');
-const jwt = require('jsonwebtoken');
 const _=  require('lodash');
 const login=  require('./routes/login');
 const {Register, validateRegister}= require('./models/register');
-const {Jwt}= require('./models/jwt');
 const dashboard=  require('./routes/dashboard');
+const facebook_login= require('./routes/facebook_login');
 
 mongoose.connect(config.get('db'),{useNewUrlParser: true,useUnifiedTopology: true})
     .then(()=> console.log(`Connected to ${config.get('db')}...`))
@@ -24,6 +23,7 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use('/login',login);
 app.use('/dashboard',dashboard);
+app.use('/login-with-facebook',facebook_login);
 
 require('./prod.js')(app);
 

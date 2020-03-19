@@ -40,7 +40,7 @@ $(document).ready(()=>{
             },
             method: "POST",
             success : function(data){
-                ajax_call1(data.password)
+                ajax_call1(data.email)
             },
             error:function(err){
                 alert(JSON.stringify(err.responseText));
@@ -49,13 +49,13 @@ $(document).ready(()=>{
     });
 });
 
-function ajax_call1(password)
+function ajax_call1(email)
 {
     return $.ajax({
             url: "/dashboard",
             headers:{
                 'x-auth-token': headerToken,
-                'password': password
+                'email': email
             },
             method: "POST",
             success : function(data){

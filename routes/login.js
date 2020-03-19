@@ -1,20 +1,7 @@
 const express= require('express');
 const router= express.Router();
-const config= require('config');
-const jwt= require('jsonwebtoken');
 const bcrypt= require('bcrypt');
 const {Register, validateRegister}= require('../models/register');
-const {Jwt}= require('../models/jwt');
-const auth= require('../middleware/auth');
-
-router.get('/dashboard?:password',async function(req,res){
-    console.log(req.params.password)
-    res.status(200).render('dashboard');
-});
-
-router.post('/dashboard',auth,async function(req,res){
-    res.status(200).send({link:"/login/dashboard?"+req.header('password'),message:"successfully logged in"})
-});
 
 router.get('/',async function(req,res){
     res.status(200).render("login");
@@ -34,7 +21,7 @@ router.post('/',async (req,res)=>{
     if(!validPassword)
         return res.status(400).send('Invalid password..');
 
-    res.status(200).send({password:user.Password});
+    res.status(200).send({email:user.Email});
 });
 
 module.exports= router;

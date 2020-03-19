@@ -4,5 +4,12 @@
     
     <body>
 
+        -var key=[]
+        -if(value==1)
+            -key= [info.Email]
+        -else
+            -key= [info.name]
         div(class="container text-center")
-            h3= "Hello.. this is dashboard"
+            h3= "Dashboard"
+            -for(var i=0;i<key.length;i++)
+                h5= key[i]
