@@ -9,6 +9,7 @@ const login=  require('./routes/login');
 const {Register, validateRegister}= require('./models/register');
 const dashboard=  require('./routes/dashboard');
 const facebook_login= require('./routes/facebook_login');
+const uploads= require('./routes/uploads');
 
 mongoose.connect(config.get('db'),{useNewUrlParser: true,useUnifiedTopology: true})
     .then(()=> console.log(`Connected to ${config.get('db')}...`))
@@ -24,6 +25,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use('/login',login);
 app.use('/dashboard',dashboard);
 app.use('/login-with-facebook',facebook_login);
+app.use('/upload', uploads);
 
 require('./prod.js')(app);
 

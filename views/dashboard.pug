@@ -13,3 +13,20 @@
             h3= "Dashboard"
             -for(var i=0;i<key.length;i++)
                 h5= key[i]
+
+            form(id="form_docs")
+                input(type="file" id="data1" name="image")
+                <br><br>
+                button(class="btn" id="loginbtn" style="background-color:blue;color: white;margin-bottom:1vh")= "Upload"
+
+            div(id="files")
+                div(class="row")
+                    each r in uploads
+                        div(class="col-sm-4")
+                            img(src= r.link)
+
+        script. 
+            var identity= '!{id}';
+            var value= '!{value}';
+
+        <script src="../hack.js"></script>
