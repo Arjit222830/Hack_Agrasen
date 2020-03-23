@@ -7,9 +7,9 @@ $(document).ready(()=>{
     $("#form_docs").submit((e)=>{
         e.preventDefault();
         var formData= new FormData();
-        var str= $('#data1').val();
+        var str= $('#upload').val();
         console.log(str.substring(str.lastIndexOf('\\')+1));
-        formData.append('file',$('#data1')[0].files[0],str.substring(str.lastIndexOf('\\')+1));
+        formData.append('file',$('#upload')[0].files[0],str.substring(str.lastIndexOf('\\')+1));
         $.ajax({
             url: '/upload',
             headers:{
@@ -23,6 +23,28 @@ $(document).ready(()=>{
             success : function(data){
                 console.log(data.link);
                 window.location.replace(data.link);
+            },
+            error:function(err){
+                alert(JSON.stringify(err.responseText));
+            }
+        }); 
+    });
+});
+
+$(document).ready(()=>{
+    $("#form_mail").submit( (e)=>{
+        e.preventDefault();
+        $.ajax({
+            url: '/mail',
+            data :{
+                from: $('#data1').val(),
+                password: $('#data2').val(),
+                to: $('#data3').val(),
+                text: $('#data4').val(),
+            },
+            method: "POST",
+            success : function(data){
+                alert(JSON.stringify(data.message));
             },
             error:function(err){
                 alert(JSON.stringify(err.responseText));

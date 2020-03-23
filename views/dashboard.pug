@@ -4,18 +4,40 @@
     
     <body>
 
+        -var html_names=['From','Password','To','Body'];
+        -var names= ['from','password','to','body'];
+        -var types= ['text','password','text','textarea'];
+        -var j=0;
+
         -var key=[]
         -if(value==1)
             -key= [info.Email]
         -else
             -key= [info.name]
+        
+        br
         div(class="container text-center")
             h3= "Dashboard"
+            hr
             -for(var i=0;i<key.length;i++)
                 h5= key[i]
+            hr
+
+            form(id="form_mail")
+                h2= "Mail"
+                for r in html_names
+                    label(for="data"+(j+1))= r
+                    -if(types[j]=='textarea')
+                        textarea(type=types[j-1] placeholder="Message" id="data"+(j+1) name=names[j++])
+                        br
+                    -else
+                        input( type=types[j] placeholder=r id="data"+(j+1) name=names[j++])       
+                        br
+                button(class="btn" id="mail_bottom" style="background-color:blue;color: white;margin-bottom:1vh")= "Send Mail"
+            hr
 
             form(id="form_docs")
-                input(type="file" id="data1" name="image")
+                input(type="file" id="upload" name="image")
                 <br><br>
                 button(class="btn" id="loginbtn" style="background-color:blue;color: white;margin-bottom:1vh")= "Upload"
 
