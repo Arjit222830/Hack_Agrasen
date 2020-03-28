@@ -9,6 +9,7 @@ const login=  require('./routes/login');
 const {Register, validateRegister}= require('./models/register');
 const dashboard=  require('./routes/dashboard');
 const facebook_login= require('./routes/facebook_login');
+const google_login= require('./routes/google_login');
 const uploads= require('./routes/uploads');
 const mail= require('./routes/mail');
 
@@ -26,6 +27,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use('/login',login);
 app.use('/dashboard',dashboard);
 app.use('/login-with-facebook',facebook_login);
+app.use('/login-with-google', google_login);
 app.use('/upload', uploads);
 app.use('/mail', mail);
 

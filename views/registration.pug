@@ -17,15 +17,21 @@
                     label(for="data"+(i+1))= r
                     input( type=types[i] placeholder=r id="data"+(i+1) name=names[i++])     
                     br
-                button(class="btn" id="sub" style="background-color:red;color: white;margin-bottom:1vh" type="submit")= "Sign Up"
+                button(class="btn" id="sub" style="background-color:green;color: white;margin-bottom:1vh" type="submit")= "Sign Up"
 
             button(class="btn" id="loginbtn" style="background-color:blue;color: white;margin-bottom:1vh")= "Register with facebook"
 
             br
+
+            button(class="btn" onClick='onSignInClick()' id="google_button_in" style="background-color:red;color: white;margin-bottom:1vh")= "Register with google"
+            br
+            button(class="btn" onClick='onSignOutClick()' id="google_button_out" style="background-color:red;color: white;margin-bottom:1vh")= "Sign Out with google"
+            br
             a(href="/login")
-                button(class="btn" style="background-color:red;color: white;margin-bottom:1vh")= "Login"
+                button(class="btn" style="background-color:green;color: white;margin-bottom:1vh")= "Login"
 
         <script src="../facebook.js"></script>
+         <script src="../google.js"></script>
         <script src="../hack.js"></script>
     </body>
 </html>
