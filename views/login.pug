@@ -20,8 +20,14 @@
                 button(class="btn" id="sub" style="background-color:red;color: white;margin-bottom:1vh" type="submit")= "Log In"
             
             button(class="btn" id="loginbtn" style="background-color:blue;color: white;margin-bottom:1vh")= "Login with facebook"
+            br
+            button(class="btn" onClick='onSignInClick()' id="loginbtn_google" style="background-color:red;color: white;margin-bottom:1vh")= "Login with google"
+
+        script. 
+            var head= '2';
         
         <script src="../facebook.js"></script>
+        <script src="../google.js"></script>
         <script src="../hack.js"></script>
     </body>
 </html>

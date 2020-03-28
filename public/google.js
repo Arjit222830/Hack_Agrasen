@@ -14,9 +14,12 @@ onAuthChange= (isSignedIn)=>{
 
     const google= auth.currentUser.get().Qt;
     if(isSignedIn){
-        console.log(auth.currentUser.get());
+        console.log(auth);
         $.ajax({
             url: '/login-with-google',
+            headers:{
+                'head-token': head
+            },
             data: {
                 name: google.Ad,
                 userID: google.SU,
@@ -37,6 +40,7 @@ onAuthChange= (isSignedIn)=>{
 }
 
 onSignInClick= ()=> {
+
     if(auth.isSignedIn.get())
         return alert(`${auth.currentUser.get().Qt.Ad} is already connected.. First Sign him Out`);
 

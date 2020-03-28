@@ -7,7 +7,10 @@ router.post('/',async(req, res)=>{
     const register=await Google_Register.findOne({googleID: req.body.userID});
 
     if(register)
-        return res.status(400).send('Already Registered');
+        return res.status(200).send({link:"/dashboard/3-"+req.body.userID, message:'Successfully Logged in'});
+    
+    if(req.header('head-token')=='2')
+        return  res.status(400).send('User Not Registered');
 
     const google_register= new Google_Register({
         name: req.body.name,
